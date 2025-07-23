@@ -50,7 +50,7 @@ const HeroSection = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mb-6"
             >
-              <Logo size="xl" />
+              {/* <Logo size="xl" /> */}
             </motion.div>
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
@@ -70,7 +70,7 @@ const HeroSection = () => {
                 🤖 Pide tu Bot Personalizado
               </Link>
               <button className="border-2 border-gold text-gold px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-black transition-all duration-300 transform hover:scale-105">
-                📱 Ver Demo en Vivo
+                📱 Ver Demo
               </button>
             </div>
           </motion.div>
