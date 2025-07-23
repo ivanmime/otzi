@@ -9,7 +9,7 @@ const SolutionSection = () => {
       description: "Tu bot atiende clientes mientras duermes, nunca pierdes una oportunidad de venta"
     },
     {
-      icon: "📅", 
+      icon: "⏰", 
       title: "Agenda citas según tu disponibilidad real",
       description: "Sincronización inteligente con tu calendario, evita dobles reservas y optimiza tu tiempo"
     },
