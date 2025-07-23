@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +23,8 @@ const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const [captchaError, setCaptchaError] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -68,6 +71,23 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+    setCaptchaError(null);
+  };
+
+  const SITE_KEY = '6LfJC40rAAAAABEtYthdb5R365QVfG85H0VQo30Y';
+
+  useEffect(() => {
+    // Cargar el script de reCAPTCHA v3 si no está presente
+    if (!window.grecaptcha) {
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -78,54 +98,42 @@ const Contact = () => {
     setIsLoading(true);
     
     try {
-      // Send form data to email
-      const formElement = e.target;
-      const formAction = 'https://formsubmit.co/pinseo25@gmail.com';
+      // Esperar a que grecaptcha esté disponible
+      if (!window.grecaptcha) {
+        setCaptchaError('No se pudo cargar el captcha. Intenta de nuevo.');
+        setIsLoading(false);
+        return;
+      }
+      // Ejecutar reCAPTCHA v3
+      const token = await window.grecaptcha.execute(SITE_KEY, { action: 'submit' });
+      if (!token) {
+        setCaptchaError('No se pudo validar el captcha.');
+        setIsLoading(false);
+        return;
+      }
+      setCaptchaError(null);
+      const formAction = 'https://formsubmit.co/ajax/pinseo25@gmail.com';
+      const payload = { ...formData };
+      payload.automationNeeds = formData.automationNeeds.join(', ');
+      payload._subject = `Nueva solicitud de bot: ${formData.studioName}`;
+      payload['g-recaptcha-response'] = token;
       
-      // Create a hidden form to submit
-      const hiddenForm = document.createElement('form');
-      hiddenForm.method = 'POST';
-      hiddenForm.action = formAction;
-      
-      // Add all form data as hidden inputs
-      Object.entries(formData).forEach(([key, value]) => {
-        if (key === 'automationNeeds') {
-          // Handle array values
-          const automationNeedsStr = value.join(', ');
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = automationNeedsStr;
-          hiddenForm.appendChild(input);
-        } else {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value;
-          hiddenForm.appendChild(input);
-        }
+      const response = await fetch(formAction, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
       });
       
-      // Add required FormSubmit fields
-      const emailInput = document.createElement('input');
-      emailInput.type = 'hidden';
-      emailInput.name = '_subject';
-      emailInput.value = `Nueva solicitud de bot: ${formData.studioName}`;
-      hiddenForm.appendChild(emailInput);
-      
-      // Append to body, submit, and remove
-      document.body.appendChild(hiddenForm);
-      hiddenForm.submit();
-      
-      // Show success after submission
-      setTimeout(() => {
+      if (response.ok) {
         setIsLoading(false);
         setIsSubmitted(true);
-      }, 2000);
+      } else {
+        throw new Error('Error en el envío');
+      }
       
     } catch (error) {
-      console.error('Error submitting form:', error);
       setIsLoading(false);
+      setCaptchaError('Hubo un error al enviar el formulario. Intenta nuevamente.');
     }
   };
 
@@ -409,6 +417,11 @@ const Contact = () => {
                         placeholder="Cuéntanos cualquier detalle específico sobre tu estudio o necesidades..."
                       />
                     </div>
+                  </div>
+
+                  <div className="flex flex-col items-center">
+                    {/* El captcha v3 no requiere widget visual, solo mostrar error si existe */}
+                    {captchaError && <p className="text-red-500 text-xs mt-2">{captchaError}</p>}
                   </div>
 
                   <button
