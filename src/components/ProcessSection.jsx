@@ -41,7 +41,7 @@ const ProcessSection = () => {
           <p className="text-xl text-gray-300">Proceso simple en 4 pasos</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -49,18 +49,17 @@ const ProcessSection = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative flex flex-col items-center"
             >
-              <div className="bg-gradient-to-br from-gold/10 to-transparent border border-gold/30 rounded-2xl p-6 text-center hover:border-gold/60 transition-all duration-300 h-full">
+              <div className="bg-gradient-to-br from-gold/10 to-transparent border border-gold/30 rounded-2xl p-6 text-center hover:border-gold/60 transition-all duration-300 h-full w-full flex flex-col items-center">
                 <div className="text-4xl mb-4">{step.number}</div>
                 <h3 className="text-lg font-bold text-white mb-4">{step.title}</h3>
                 <p className="text-gray-300 text-sm leading-relaxed">{step.description}</p>
               </div>
-              
-              {/* Arrow connector */}
+              {/* Flecha */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-gold text-2xl">
-                  →
+                <div className="hidden lg:flex items-center justify-center absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 h-full">
+                  <span className="text-gold text-3xl">→</span>
                 </div>
               )}
             </motion.div>
