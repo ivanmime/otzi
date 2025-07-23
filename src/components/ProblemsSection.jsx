@@ -31,7 +31,7 @@ const ProblemsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            ¿Te suena <span className="text-darkRed">familiar</span>?
+            ¿Te suena <span className="text-gold">familiar</span>?
           </h2>
         </motion.div>
 
