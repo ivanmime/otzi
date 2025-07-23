@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
-import ReCAPTCHA from 'react-google-recaptcha';
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
