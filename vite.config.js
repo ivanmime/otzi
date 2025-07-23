@@ -1,17 +1,18 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: './',
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
+  build: {
+    rollupOptions: {
+      external: ['react-google-recaptcha'],
+      onwarn(warning, warn) {
+        // Ignorar completamente warnings de react-google-recaptcha
+        if (warning.code === 'UNRESOLVED_IMPORT' && warning.message.includes('react-google-recaptcha')) {
+          return;
+        }
+        warn(warning);
+      }
     }
-  },
-   build: {
-    outDir: 'dist',
-    sourcemap: true
-  },
-});
+  }
+})
