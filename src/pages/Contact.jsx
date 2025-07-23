@@ -440,6 +440,9 @@ const Contact = () => {
                       '📨 Enviar Solicitud'
                     )}
                   </button>
+                  <p className="text-xs text-gray-400 mt-2 text-center">
+                    Protegido por reCAPTCHA y Google
+                  </p>
                 </form>
               </div>
             </motion.div>
