@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npx vite",
-    "build": "npx vite build",
-    "lint": "npx eslint .",
-    "lint:error": "npx eslint . --quiet",
-    "preview": "npx vite preview"
+    "dev": "vite",
+    "build": "vite build",
+    "vercel-build": "vite build",
+    "lint": "eslint .",
+    "lint:error": "eslint . --quiet",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@questlabs/react-sdk": "^2.2.4",
