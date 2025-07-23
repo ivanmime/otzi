@@ -49,16 +49,16 @@ const ProcessSection = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="relative flex flex-col items-center"
+              className="relative flex flex-col items-center h-full"
             >
-              <div className="bg-gradient-to-br from-gold/10 to-transparent border border-gold/30 rounded-2xl p-6 text-center hover:border-gold/60 transition-all duration-300 h-full w-full flex flex-col items-center">
+              <div className="bg-gradient-to-br from-gold/10 to-transparent border border-gold/30 rounded-2xl p-6 text-center hover:border-gold/60 transition-all duration-300 h-full min-h-[260px] w-full flex flex-col items-center justify-center">
                 <div className="text-4xl mb-4">{step.number}</div>
                 <h3 className="text-lg font-bold text-white mb-4">{step.title}</h3>
                 <p className="text-gray-300 text-sm leading-relaxed">{step.description}</p>
               </div>
               {/* Flecha */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:flex items-center justify-center absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 h-full">
+                <div className="hidden lg:flex items-center justify-center absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2">
                   <span className="text-gold text-3xl">→</span>
                 </div>
               )}
