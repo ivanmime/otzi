@@ -1,39 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Página principal - Home -->
-  <url>
-    <loc>https://otzibot.com/</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Página de contacto -->
-  <url>
-    <loc>https://otzibot.com/contacto</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Términos y Condiciones -->
-  <url>
-    <loc>https://otzibot.com/terminos-y-condiciones</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- Política de Privacidad -->
-  <url>
-    <loc>https://otzibot.com/politica-de-privacidad</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
+<!-- 	created with www.mysitemapgenerator.com	 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://www.otzibot.com/</loc>
+<lastmod>2025-08-19T23:50:23+01:00</lastmod>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://www.otzibot.com/contacto</loc>
+<lastmod>2025-08-19T23:50:23+01:00</lastmod>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://www.otzibot.com/terminos-y-condiciones</loc>
+<lastmod>2025-08-19T23:50:23+01:00</lastmod>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://www.otzibot.com/politica-de-privacidad</loc>
+<lastmod>2025-08-19T23:50:23+01:00</lastmod>
+<priority>1.0</priority>
+</url>
 </urlset> 
