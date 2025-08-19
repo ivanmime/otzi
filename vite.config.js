@@ -51,21 +51,6 @@ export default defineConfig({
     sourcemap: false,
   },
   
-  // CSS optimization
-  css: {
-    postcss: {
-      plugins: [
-        require('autoprefixer'),
-        require('cssnano')({
-          preset: ['default', {
-            discardComments: { removeAll: true },
-            normalizeWhitespace: true,
-          }]
-        })
-      ]
-    }
-  },
-  
   // Preload optimization
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
