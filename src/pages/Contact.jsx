@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SEOHead from '../common/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
@@ -178,6 +179,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-darkBg">
+      <SEOHead
+        title="Solicita tu Bot Personalizado - Ink Revolution Studio"
+        description="¿Quieres automatizar tu estudio de tatuajes? Solicita tu bot personalizado hoy. Te contactamos en 24h para comenzar con tu propuesta."
+        keywords="tatuajes, estudio de tatuajes, bot de tatuajes, automatización, estudio de tatuajes, estudio de tatuajes"
+      />
       <Header />
       <div className="pt-24 pb-20">
         <div className="container mx-auto px-6">

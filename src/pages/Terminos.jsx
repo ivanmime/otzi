@@ -1,10 +1,16 @@
 import React from 'react';
+import SEOHead from '../common/SEOHead';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Terminos = () => {
   return (
     <div className="min-h-screen bg-darkBg text-white">
+      <SEOHead 
+        title="Términos y Condiciones - Otzi Bot"
+        description="Lee nuestros términos y condiciones para el uso de Otzi Bot. Conoce las reglas y políticas que rigen nuestro servicio de IA para estudios de tatuajes."
+        canonical="https://www.otzibot.com/terminos-y-condiciones"
+      />
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
