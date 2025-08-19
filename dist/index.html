@@ -1,15 +1,65 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/assets/favicon-D1j9w1Da.ico" />
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/assets/ico/favicon-D1j9w1Da.ico" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- Performance Optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload Critical Resources -->
+    
+    <!-- Core Web Vitals Optimization -->
+    <link rel="preload" href="data:text/jsx;base64,aW1wb3J0IHsgU3RyaWN0TW9kZSB9IGZyb20gJ3JlYWN0JzsNCmltcG9ydCB7IGNyZWF0ZVJvb3QgfSBmcm9tICdyZWFjdC1kb20vY2xpZW50JzsNCmltcG9ydCB7IEhlbG1ldFByb3ZpZGVyIH0gZnJvbSAncmVhY3QtaGVsbWV0LWFzeW5jJzsNCmltcG9ydCBBcHAgZnJvbSAnLi9BcHAuanN4JzsNCmltcG9ydCAnLi9pbmRleC5jc3MnOw0KDQpjcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyb290JykpLnJlbmRlcigNCiAgPFN0cmljdE1vZGU+DQogICAgPEhlbG1ldFByb3ZpZGVyPg0KICAgICAgPEFwcCAvPg0KICAgIDwvSGVsbWV0UHJvdmlkZXI+DQogIDwvU3RyaWN0TW9kZT4NCik7" as="script" />
+    
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1a1a1a" />
+    <meta name="description" content="Bot asistente de IA para automatizar reservas en estudios de tatuajes" />
+    
+    <!-- Apple Mobile Web App -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Otzi Bot" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
     <title>Otzi Bot - Asistente de Reservas</title>
-    <script type="module" crossorigin src="/assets/index-C14vh7It.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dp9qE6Mb.css">
+    <script type="module" crossorigin src="/assets/js/index-B1hfFRUg.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-SIwY82C9.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/motion-CNr7hp2z.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/router-9BkwOwOV.js">
+    <link rel="stylesheet" crossorigin href="/assets/css/index-CHef8QXC.css">
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Performance Monitoring -->
+    <script>
+      // Core Web Vitals monitoring
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (entry.entryType === 'largest-contentful-paint') {
+              console.log('LCP:', entry.startTime);
+            }
+            if (entry.entryType === 'first-input-delay') {
+              console.log('FID:', entry.processingStart - entry.startTime);
+            }
+          }
+        });
+        observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input-delay'] });
+      }
+    </script>
   </body>
 </html>
