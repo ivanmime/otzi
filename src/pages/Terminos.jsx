@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Terminos = () => {
-      return (
-      <div className="min-h-screen bg-darkBg text-white">
-        <SEOHead 
-          title="Términos y Condiciones - Otzi Bot | Asistente de IA para Estudios de Tatuajes"
-          description="Conoce los términos y condiciones de uso de Otzi Bot. Información sobre el uso aceptable, derechos y responsabilidades al utilizar nuestro asistente de IA para estudios de tatuajes."
-          canonical="https://www.otzibot.com/terminos-y-condiciones"
-        />
-        {/* Header */}
+  return (
+    <div className="min-h-screen bg-darkBg text-white">
+      <SEOHead 
+        title="Términos y Condiciones - Otzi Bot | Asistente de IA para Estudios de Tatuajes"
+        description="Conoce los términos y condiciones de uso de Otzi Bot. Información sobre el uso aceptable, derechos y responsabilidades al utilizar nuestro asistente de IA para estudios de tatuajes."
+        canonical="https://www.otzibot.com/terminos-y-condiciones"
+      />
+      {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
