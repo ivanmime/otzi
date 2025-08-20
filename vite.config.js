@@ -4,13 +4,26 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   
+  // Performance optimizations
+  server: {
+    headers: {
+      'Cache-Control': 'public, max-age=31536000',
+    },
+  },
+  
   build: {
-    // Bundle optimization - using esbuild instead of terser
-    minify: 'esbuild',
+    // Bundle optimization
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     
     // Chunk splitting for better caching
     rollupOptions: {
-      external: ['react-google-recaptcha', 'react-helmet-async'],
+      external: ['react-google-recaptcha'],
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
@@ -22,10 +35,8 @@ export default defineConfig({
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
       onwarn(warning, warn) {
-        // Ignorar completamente warnings de react-google-recaptcha y react-helmet-async
-        if (warning.code === 'UNRESOLVED_IMPORT' && 
-            (warning.message.includes('react-google-recaptcha') || 
-             warning.message.includes('react-helmet-async'))) {
+        // Ignorar completamente warnings de react-google-recaptcha
+        if (warning.code === 'UNRESOLVED_IMPORT' && warning.message.includes('react-google-recaptcha')) {
           return;
         }
         warn(warning);
@@ -35,6 +46,8 @@ export default defineConfig({
     // Asset optimization
     assetsInlineLimit: 4096,
     chunkSizeWarningLimit: 1000,
+    
+    // Source maps for production debugging
     sourcemap: false,
   },
   

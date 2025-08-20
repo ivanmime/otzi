@@ -67,7 +67,7 @@ const SEOHead = ({
           "name": "Otzi Bot",
           "description": "Bot asistente de IA para automatizar reservas en estudios de tatuajes",
           "applicationCategory": "BusinessApplication",
-          "operatingSystem": "Web, iOS, Android",
+          "operatingSystem": "Web, Mobile",
           "offers": {
             "@type": "Offer",
             "price": "0",
@@ -93,6 +93,7 @@ const SEOHead = ({
           "installUrl": "https://www.otzibot.com",
           "softwareVersion": "1.0.0",
           "releaseNotes": "Bot asistente de IA para estudios de tatuajes",
+          "operatingSystem": "Web, iOS, Android",
           "permissions": "Acceso a calendario, chat, notificaciones",
           "aggregateRating": {
             "@type": "AggregateRating",
