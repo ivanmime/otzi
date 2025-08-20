@@ -15,9 +15,14 @@
 <lastmod>2025-01-20T12:00:00+01:00</lastmod>
 <priority>1.0</priority>
 </url>
-<url>
-<loc>https://www.otzibot.com/politica-de-privacidad</loc>
-<lastmod>2025-01-20T12:00:00+01:00</lastmod>
-<priority>1.0</priority>
-</url>
-</urlset> 
+       <url>
+       <loc>https://www.otzibot.com/politica-de-privacidad</loc>
+       <lastmod>2025-01-20T12:00:00+01:00</lastmod>
+       <priority>1.0</priority>
+       </url>
+       <url>
+       <loc>https://www.otzibot.com/politica-cookies</loc>
+       <lastmod>2025-01-20T12:00:00+01:00</lastmod>
+       <priority>0.8</priority>
+       </url>
+       </urlset> 

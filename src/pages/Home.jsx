@@ -9,6 +9,7 @@ import FeaturesSection from '../components/FeaturesSection';
 import ProcessSection from '../components/ProcessSection';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
+import CookieBanner from '../components/CookieBanner';
 
 const Home = () => {
   return (
@@ -27,6 +28,7 @@ const Home = () => {
       <ProcessSection />
       <FinalCTA />
       <Footer />
+      <CookieBanner />
     </div>
   );
 };

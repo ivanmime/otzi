@@ -28,6 +28,13 @@ const Footer = () => {
             >
               Política de Privacidad
             </Link>
+            <span className="text-gray-600">|</span>
+            <Link 
+              to="/politica-cookies" 
+              className="hover:text-gold transition-colors duration-200"
+            >
+              Política de Cookies
+            </Link>
           </div>
           <div className="text-gray-400 text-sm">
             © 2025 Otzi Bot - Todos los derechos reservados

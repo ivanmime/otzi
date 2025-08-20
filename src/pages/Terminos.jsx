@@ -2,6 +2,7 @@ import React from 'react';
 import SEOHead from '../common/SEOHead';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import CookieBanner from '../components/CookieBanner';
 
 const Terminos = () => {
   return (
@@ -225,6 +226,7 @@ const Terminos = () => {
           </p>
         </div>
       </motion.main>
+      <CookieBanner />
     </div>
   );
 };
