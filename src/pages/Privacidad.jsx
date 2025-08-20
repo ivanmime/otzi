@@ -1,16 +1,10 @@
 import React from 'react';
-import SEOHead from '../common/SEOHead';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Privacidad = () => {
   return (
     <div className="min-h-screen bg-darkBg text-white">
-      <SEOHead 
-        title="Política de Privacidad - Otzi Bot"
-        description="Conoce cómo protegemos tu privacidad en Otzi Bot. Información sobre recopilación, uso y protección de datos personales en nuestro servicio de IA."
-        canonical="https://www.otzibot.com/politica-de-privacidad"
-      />
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
