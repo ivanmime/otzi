@@ -6,73 +6,58 @@
     <!-- Favicon and Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     
-    <!-- Basic Meta Tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Automatiza las reservas de tu estudio de tatuajes con IA. Reduce consultas repetitivas y aumenta conversiones con nuestro bot asistente inteligente." />
-    <meta name="keywords" content="bot asistente, reservas tatuajes, IA tatuajes, automatización estudios, agendar citas" />
-    <meta name="author" content="Otzi Bot" />
-    <meta name="language" content="Spanish" />
+    <!-- Performance Optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Otzi Bot - Bot IA para Reservas de Tatuajes" />
-    <meta property="og:description" content="Automatiza las reservas de tu estudio de tatuajes con IA. Reduce consultas repetitivas y aumenta conversiones con nuestro bot asistente inteligente." />
-    <meta property="og:url" content="https://www.otzibot.com/" />
-    <meta property="og:site_name" content="Otzi Bot" />
-    <meta property="og:locale" content="es_ES" />
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="preload" href="/src/App.css" as="style" />
     
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Otzi Bot - Bot IA para Reservas de Tatuajes" />
-    <meta name="twitter:description" content="Automatiza las reservas de tu estudio de tatuajes con IA. Reduce consultas repetitivas y aumenta conversiones con nuestro bot asistente inteligente." />
+    <!-- Core Web Vitals Optimization -->
+    <link rel="preload" href="/src/main.jsx" as="script" />
     
-    <!-- Additional SEO -->
-    <meta name="robots" content="index, follow" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="distribution" content="global" />
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#1a1a1a" />
+    <meta name="description" content="Otzi Bot es tu asistente de IA especializado en automatizar reservas y gestionar citas para estudios de tatuajes. Mejora tu productividad con IA avanzada." />
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.otzibot.com/" />
+    <!-- Apple Mobile Web App -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Otzi Bot" />
     
-    <title>Otzi Bot - Bot IA para Reservas de Tatuajes</title>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     
-    <!-- Structured Data - SoftwareApplication -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Otzi Bot",
-      "description": "Bot asistente de IA para automatizar reservas en estudios de tatuajes",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web, iOS, Android",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "EUR",
-        "availability": "https://schema.org/InStock"
-      },
-      "provider": {
-        "@type": "Organization",
-        "name": "PINSEO",
-        "url": "https://www.otzibot.com"
-      },
-      "featureList": [
-        "Automatización de reservas",
-        "Chatbot inteligente",
-        "Integración con calendarios",
-        "Gestión de clientes",
-        "Respuestas 24/7",
-        "Reducción de consultas repetitivas"
-      ],
-      "applicationSubCategory": "AI Assistant",
-      "softwareVersion": "1.0.0",
-      "releaseNotes": "Bot asistente de IA para estudios de tatuajes"
-    }
-    </script>
+    <title>Otzi Bot - Asistente de IA para Reservas en Estudios de Tatuajes</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Performance Monitoring -->
+    <script>
+      // Core Web Vitals monitoring
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (entry.entryType === 'largest-contentful-paint') {
+              console.log('LCP:', entry.startTime);
+            }
+            if (entry.entryType === 'first-input-delay') {
+              console.log('FID:', entry.processingStart - entry.startTime);
+            }
+          }
+        });
+        observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input-delay'] });
+      }
+    </script>
   </body>
 </html>

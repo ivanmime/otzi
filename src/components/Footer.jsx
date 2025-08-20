@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
 const Footer = () => {
@@ -14,19 +15,19 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-center space-y-4">
           <Logo size="small" />
           <div className="flex items-center space-x-6 text-xs text-gray-500">
-            <a 
-              href="/terminos-y-condiciones" 
+            <Link 
+              to="/terminos-y-condiciones" 
               className="hover:text-gold transition-colors duration-200"
             >
               Términos y Condiciones
-            </a>
+            </Link>
             <span className="text-gray-600">|</span>
-            <a 
-              href="/politica-de-privacidad" 
+            <Link 
+              to="/politica-de-privacidad" 
               className="hover:text-gold transition-colors duration-200"
             >
               Política de Privacidad
-            </a>
+            </Link>
           </div>
           <div className="text-gray-400 text-sm">
             © 2025 Otzi Bot - Todos los derechos reservados

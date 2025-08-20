@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SEOHead from '../common/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
@@ -178,6 +179,11 @@ const Contact = () => {
 
       return (
       <div className="min-h-screen bg-darkBg">
+        <SEOHead 
+          title="Contacto - Otzi Bot | Asistente de IA para Estudios de Tatuajes"
+          description="Solicita tu bot personalizado de IA para tu estudio de tatuajes. Automatiza reservas y gestiona citas con inteligencia artificial. Te contactamos en 24 horas."
+          canonical="https://www.otzibot.com/contacto"
+        />
         <Header />
         <div className="pt-24 pb-20">
         <div className="container mx-auto px-6">
