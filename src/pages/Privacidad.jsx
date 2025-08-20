@@ -8,7 +8,7 @@ const Privacidad = () => {
     <div className="min-h-screen bg-darkBg text-white">
       <SEOHead 
         title="Política de Privacidad - Otzi Bot | Asistente de IA para Estudios de Tatuajes"
-        description="Conoce cómo protegemos tu privacidad en Otzi Bot. Información sobre recopilación, uso y protección de datos personales en nuestro asistente de IA para estudios de tatuajes."
+        description="Política de privacidad de Otzi Bot. Información sobre protección de datos personales en nuestro asistente de IA para estudios de tatuajes."
         canonical="https://www.otzibot.com/politica-de-privacidad"
       />
       {/* Header */}

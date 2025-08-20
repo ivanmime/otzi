@@ -8,7 +8,7 @@ const Terminos = () => {
     <div className="min-h-screen bg-darkBg text-white">
       <SEOHead 
         title="Términos y Condiciones - Otzi Bot | Asistente de IA para Estudios de Tatuajes"
-        description="Conoce los términos y condiciones de uso de Otzi Bot. Información sobre el uso aceptable, derechos y responsabilidades al utilizar nuestro asistente de IA para estudios de tatuajes."
+        description="Términos y condiciones de uso de Otzi Bot. Información sobre derechos y responsabilidades al usar nuestro asistente de IA."
         canonical="https://www.otzibot.com/terminos-y-condiciones"
       />
       {/* Header */}

@@ -15,7 +15,7 @@ const Home = () => {
     <div>
       <SEOHead 
         title="Otzi Bot - Asistente de IA para Reservas en Estudios de Tatuajes"
-        description="Otzi Bot es tu asistente de inteligencia artificial especializado en automatizar reservas y gestionar citas para estudios de tatuajes. Mejora tu productividad con IA avanzada."
+        description="Asistente de IA para automatizar reservas y gestionar citas en estudios de tatuajes. Mejora tu productividad."
         canonical="https://www.otzibot.com"
       />
       <Header />
