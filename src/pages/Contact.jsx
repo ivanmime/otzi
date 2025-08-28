@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import SEOHead from '../common/SEOHead';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import CookieBanner from '../components/CookieBanner';
 import { motion } from 'framer-motion';
 
 
@@ -512,7 +511,6 @@ const Contact = () => {
         </div>
       </div>
       <Footer />
-      <CookieBanner />
     </div>
   );
 };

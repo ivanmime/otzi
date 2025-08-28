@@ -6,6 +6,7 @@ import Terminos from './pages/Terminos';
 import Privacidad from './pages/Privacidad';
 import Cookies from './pages/Cookies';
 import './index.css';
+import CookieBanner from './components/CookieBanner';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                  <Route path="/politica-cookies" element={<Cookies />} />
                </Routes>
       </div>
+      <CookieBanner />
     </Router>
   );
 }

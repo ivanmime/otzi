@@ -8,11 +8,9 @@ const CookieBanner = () => {
   const [showPreferences, setShowPreferences] = useState(false);
   const { consent, preferences, updateConsent, acceptAll, rejectAll } = useCookieConsent();
 
-  // Show banner if no consent has been given
+  // Mostrar u ocultar el banner según el consentimiento
   React.useEffect(() => {
-    if (!consent) {
-      setShowBanner(true);
-    }
+    setShowBanner(!consent);
   }, [consent]);
 
   const handleAcceptAll = () => {

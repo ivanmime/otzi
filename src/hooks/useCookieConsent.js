@@ -1,33 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export const useCookieConsent = () => {
-  const [consent, setConsent] = useState(null);
-  const [preferences, setPreferences] = useState({
-    necessary: true,
-    analytics: false,
-    marketing: false,
-    functional: false
-  });
-
-  useEffect(() => {
-    // Load consent from localStorage on mount
-    const savedConsent = localStorage.getItem('cookieConsent');
-    if (savedConsent) {
-      try {
-        const parsedConsent = JSON.parse(savedConsent);
-        setConsent(parsedConsent);
-        setPreferences({
-          necessary: parsedConsent.necessary || true,
-          analytics: parsedConsent.analytics || false,
-          marketing: parsedConsent.marketing || false,
-          functional: parsedConsent.functional || false
-        });
-      } catch (error) {
-        console.error('Error parsing cookie consent:', error);
-        setConsent(null);
-      }
+  const getSavedConsent = () => {
+    try {
+      const saved = localStorage.getItem('cookieConsent');
+      if (!saved) return null;
+      const parsed = JSON.parse(saved);
+      return parsed || null;
+    } catch (error) {
+      console.error('Error parsing cookie consent:', error);
+      return null;
     }
-  }, []);
+  };
+
+  const [consent, setConsent] = useState(() => getSavedConsent());
+  const [preferences, setPreferences] = useState(() => {
+    const saved = getSavedConsent();
+    if (saved) {
+      return {
+        necessary: true,
+        analytics: !!saved.analytics,
+        marketing: !!saved.marketing,
+        functional: !!saved.functional
+      };
+    }
+    return {
+      necessary: true,
+      analytics: false,
+      marketing: false,
+      functional: false
+    };
+  });
 
   const updateConsent = (newPreferences) => {
     const consentData = {
