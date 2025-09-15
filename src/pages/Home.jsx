@@ -26,7 +26,6 @@ const Home = () => {
             {/* Fondo decorativo difuminado */}
             <div className="pointer-events-none absolute inset-0" aria-hidden>
               <img src="https://blackmambatattoo.es/wp-content/uploads/logo-1.jpg" alt="Black Mamba Tattoo & Remove" className="absolute -right-10 -top-10 w-[380px] max-w-none blur-md opacity-50" />
-              <img src="https://blackmambatattoo.es/wp-content/uploads/fotos-black-mamba-tattoo-004-1.jpg" alt="Black Mamba Tattoo Studio" className="absolute -left-8 -bottom-8 w-[520px] max-w-none blur-lg opacity-25 rounded-xl" />
             </div>
 
             <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
