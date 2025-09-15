@@ -24,8 +24,9 @@ const Home = () => {
         <div className="container mx-auto px-6 py-8">
           <div className="relative overflow-hidden bg-gradient-to-br from-gold/10 to-transparent border border-gold/30 rounded-2xl p-6 md:p-8">
             {/* Fondo decorativo difuminado */}
-            <div className="pointer-events-none absolute inset-0 opacity-10" aria-hidden>
-              <img src="https://blackmambatattoo.es/wp-content/uploads/logo-1.jpg" alt="Black Mamba Tattoo & Remove" className="absolute -right-10 -top-10 w-[380px] max-w-none blur-md opacity-60" />
+            <div className="pointer-events-none absolute inset-0" aria-hidden>
+              <img src="https://blackmambatattoo.es/wp-content/uploads/logo-1.jpg" alt="Black Mamba Tattoo & Remove" className="absolute -right-10 -top-10 w-[380px] max-w-none blur-md opacity-50" />
+              <img src="https://blackmambatattoo.es/wp-content/uploads/fotos-black-mamba-tattoo-004-1.jpg" alt="Black Mamba Tattoo Studio" className="absolute -left-8 -bottom-8 w-[520px] max-w-none blur-lg opacity-25 rounded-xl" />
             </div>
 
             <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
