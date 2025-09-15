@@ -34,7 +34,7 @@ const Home = () => {
                 <h3 className="text-2xl md:text-3xl font-extrabold text-white">
                   Resultados en acción
                 </h3>
-                <p className="text-gray-300 mt-2">
+                <p className="text-gray-300 mt-2 text-sm md:text-base">
                   En <a href="https://blackmambatattoo.es/" target="_blank" rel="noopener noreferrer" className="text-gold font-semibold hover:text-yellow-400">Black Mamba Tattoo & Remove</a>, en A Coruña, España, ya usan Otzi Bot para automatizar reservas y gestionar citas en producción. El resultado: <span className="text-white font-semibold">más tiempo para tatuar</span>, <span className="text-white font-semibold">menos tiempo en WhatsApp</span>.
                 </p>
                 <ul className="mt-4 text-gray-300 list-disc list-inside space-y-1">
@@ -43,7 +43,7 @@ const Home = () => {
                   <li>Creación y actualización automática de eventos</li>
                 </ul>
                 {/* Testimonio breve */}
-                <p className="mt-4 text-sm italic text-gray-400">“Desde que implementamos Otzi, la agenda se organiza sola y respondemos más rápido.”</p>
+                <p className="mt-4 text-sm italic text-gray-200">“Otzi nos ahorra horas cada semana. Ahora nos centramos en tatuar en lugar de contestar mensajes.”</p>
               </div>
 
               <div className="flex flex-col items-end self-stretch md:self-auto gap-3 min-w-[220px]">
@@ -57,9 +57,9 @@ const Home = () => {
                 <a
                   href="#contacto"
                   onClick={(e) => { e.preventDefault(); window.location.href = '/contacto'; }}
-                  className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-gold text-black px-6 py-3 rounded-xl font-bold text-base md:text-lg hover:shadow-xl hover:shadow-gold/30 transition-all duration-300 transform hover:scale-105 border border-yellow-500"
+                  className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-gold text-black px-7 py-3.5 rounded-xl font-extrabold text-base md:text-lg hover:shadow-xl hover:shadow-gold/30 transition-all duration-300 transform hover:scale-105 border border-yellow-500"
                 >
-                  ⚡ Quiero probar Otzi Bot
+                  ⚡ Probar gratis Otzi Bot
                 </a>
               </div>
             </div>
