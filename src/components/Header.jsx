@@ -20,21 +20,13 @@ const Header = () => {
             <Logo />
           </Link>
 
-          {/* Right side: Privacy link + CTA */}
-          <div className="flex items-center gap-4">
-            <Link 
-              to="/politica-de-privacidad"
-              className="text-gray-300 hover:text-gold transition-colors text-sm"
-            >
-              Política de Privacidad
-            </Link>
-            <Link 
-              to="/contacto"
-              className="bg-gradient-to-r from-gold to-yellow-600 text-black px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-gold/25 transition-all duration-300 transform hover:scale-105"
-            >
-              🤖 Pide tu Bot
-            </Link>
-          </div>
+          {/* CTA Button */}
+          <Link 
+            to="/contacto"
+            className="bg-gradient-to-r from-gold to-yellow-600 text-black px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-gold/25 transition-all duration-300 transform hover:scale-105"
+          >
+            🤖 Pide tu Bot
+          </Link>
         </div>
       </div>
     </motion.header>
