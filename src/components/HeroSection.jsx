@@ -69,9 +69,6 @@ const HeroSection = () => {
               >
                 🤖 Pide tu Bot Personalizado
               </Link>
-              <button className="border-2 border-gold text-gold px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-black transition-all duration-300 transform hover:scale-105">
-                📱 Ver Demo
-              </button>
             </div>
           </motion.div>
 
