@@ -118,6 +118,9 @@ const Contact = () => {
       payload.automationNeeds = formData.automationNeeds.join(', ');
       payload._subject = `Nueva solicitud de bot: ${formData.studioName}`;
       payload['g-recaptcha-response'] = token;
+      // Sugeridos por FormSubmit para mejorar compatibilidad
+      payload._template = 'table';
+      payload._captcha = 'false';
       
       const response = await fetch(formAction, {
         method: 'POST',
@@ -129,12 +132,14 @@ const Contact = () => {
         setIsLoading(false);
         setIsSubmitted(true);
       } else {
-        throw new Error('Error en el envío');
+        const errorText = await response.text();
+        throw new Error(`Error en el envío: ${response.status} ${errorText}`);
       }
       
     } catch (error) {
       setIsLoading(false);
-      setCaptchaError('Hubo un error al enviar el formulario. Intenta nuevamente.');
+      console.error('FormSubmit error:', error);
+      setCaptchaError('Hubo un error al enviar el formulario. Verifica tu conexión o intenta más tarde.');
     }
   };
 
