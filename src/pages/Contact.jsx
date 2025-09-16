@@ -121,6 +121,8 @@ const Contact = () => {
       // Sugeridos por FormSubmit para mejorar compatibilidad
       payload._template = 'table';
       payload._captcha = 'false';
+      payload._next = 'https://www.otzibot.com/contacto?enviado=1';
+      payload._replyto = formData.email;
       
       const response = await fetch(formAction, {
         method: 'POST',
