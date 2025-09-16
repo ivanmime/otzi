@@ -130,18 +130,52 @@ const Contact = () => {
         body: JSON.stringify(payload)
       });
       
-      if (response.ok) {
+      const responseText = await response.text();
+      console.log('FormSubmit respuesta:', response.status, responseText);
+      let responseJson = null;
+      try { responseJson = JSON.parse(responseText); } catch {}
+      if (response.ok && (!responseJson || responseJson?.success !== false)) {
         setIsLoading(false);
         setIsSubmitted(true);
       } else {
-        const errorText = await response.text();
-        throw new Error(`Error en el envío: ${response.status} ${errorText}`);
+        throw new Error(`Error en el envío: ${response.status} ${responseText}`);
       }
       
     } catch (error) {
       setIsLoading(false);
       console.error('FormSubmit error:', error);
-      setCaptchaError('Hubo un error al enviar el formulario. Verifica tu conexión o intenta más tarde.');
+      setCaptchaError('Hubo un error al enviar el formulario. Intentando envío alternativo...');
+
+      // Fallback: submit clásico no-AJAX para asegurar entrega
+      try {
+        const fallbackForm = document.createElement('form');
+        fallbackForm.method = 'POST';
+        fallbackForm.action = 'https://formsubmit.co/pinseo25@gmail.com';
+        fallbackForm.style.display = 'none';
+
+        const fallbackPayload = { ...formData };
+        fallbackPayload.automationNeeds = formData.automationNeeds.join(', ');
+        fallbackPayload._subject = `Nueva solicitud de bot: ${formData.studioName}`;
+        fallbackPayload['g-recaptcha-response'] = captchaToken;
+        fallbackPayload._template = 'table';
+        fallbackPayload._captcha = 'false';
+        fallbackPayload._next = 'https://www.otzibot.com/contacto?enviado=1';
+        fallbackPayload._replyto = formData.email;
+
+        Object.entries(fallbackPayload).forEach(([key, value]) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = String(value ?? '');
+          fallbackForm.appendChild(input);
+        });
+
+        document.body.appendChild(fallbackForm);
+        fallbackForm.submit();
+      } catch (fallbackError) {
+        console.error('Fallback submit error:', fallbackError);
+        setCaptchaError('No se pudo enviar el formulario. Intenta de nuevo más tarde.');
+      }
     }
   };
 
