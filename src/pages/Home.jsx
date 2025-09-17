@@ -43,7 +43,7 @@ const Home = () => {
                   <li>Creación y actualización automática de eventos</li>
                 </ul>
                 {/* Testimonio breve */}
-                <p className="mt-4 text-sm italic text-gray-200">“Otzi nos ahorra horas cada semana. Ahora nos centramos en tatuar en lugar de contestar mensajes.”</p>
+                <p className="mt-4 text-sm italic text-gray-200">"Antes perdíamos clientes porque no podíamos atender el teléfono mientras tatuábamos. Ahora Otzi se encarga de todo automáticamente, incluso por las noches. Es como tener un recepcionista que nunca duerme."</p>
               </div>
 
               <div className="flex flex-col items-end self-stretch md:self-auto gap-3 min-w-[220px]">
