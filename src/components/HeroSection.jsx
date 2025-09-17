@@ -5,22 +5,36 @@ import Logo from './Logo';
 
 const HeroSection = () => {
   const messages = [
-    { text: "👋 ¡Hola! Soy Otzi, el asistente de Black Mamba Studio. ¿En qué puedo ayudarte?", isBot: true },
+    { text: "¡Hola!", isBot: false },
+    { text: "👋 ¡Hola! Soy Otzi, el asistente de Ink Studio. ¿En qué puedo ayudarte?", isBot: true },
     { text: "Quiero un tatuaje realista en el brazo", isBot: false },
     { text: "🎨 Perfecto! Para un tatuaje realista necesito algunos detalles...", isBot: true },
+    { text: "💶 El presupuesto aproximado sería: 150€ ¿Te parece bien?", isBot: true },
+    { text: "Sí, cuando tienes hora?", isBot: false },
     { text: "📅 Te propongo estas fechas disponibles: \n• Lunes 15 - 10:00h \n• Miércoles 17 - 14:00h", isBot: true },
   ];
 
   const [visibleMessages, setVisibleMessages] = useState([]);
   const chatRef = useRef(null);
+  const startedRef = useRef(false);
 
   useEffect(() => {
     if (messages.length === 0) return;
+    if (startedRef.current) return;
+    startedRef.current = true;
+    setVisibleMessages([]);
 
     const showMessages = async () => {
       for (let i = 0; i < messages.length; i++) {
         await new Promise((resolve) => setTimeout(resolve, 1000 + (i * 700)));
-        setVisibleMessages(prev => [...prev, messages[i]]);
+        setVisibleMessages(prev => {
+          // avoid pushing the same message twice (prevents duplicate messages during HMR/StrictMode)
+          const last = prev[prev.length - 1];
+          if (last && last.text === messages[i].text && last.isBot === messages[i].isBot) {
+            return prev;
+          }
+          return [...prev, messages[i]];
+        });
         
         if (chatRef.current) {
           setTimeout(() => {
