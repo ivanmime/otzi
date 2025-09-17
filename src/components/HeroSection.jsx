@@ -10,7 +10,7 @@ const HeroSection = () => {
     { text: "Quiero un tatuaje realista en el brazo", isBot: false },
     { text: "🎨 Perfecto! Para un tatuaje realista necesito algunos detalles...", isBot: true },
     { text: "💶 El presupuesto aproximado sería: 150€ ¿Te parece bien?", isBot: true },
-    { text: "Sí, cuando tienes hora?", isBot: false },
+    { text: "Sí, ¿Cuando tienes hora?", isBot: false },
     { text: "📅 Te propongo estas fechas disponibles: \n• Lunes 15 - 10:00h \n• Miércoles 17 - 14:00h", isBot: true },
   ];
 
@@ -24,9 +24,13 @@ const HeroSection = () => {
     startedRef.current = true;
     setVisibleMessages([]);
 
+    let cancelled = false;
+
     const showMessages = async () => {
       for (let i = 0; i < messages.length; i++) {
+        if (cancelled) return;
         await new Promise((resolve) => setTimeout(resolve, 1000 + (i * 700)));
+        if (cancelled) return;
         setVisibleMessages(prev => {
           // avoid pushing the same message twice (prevents duplicate messages during HMR/StrictMode)
           const last = prev[prev.length - 1];
@@ -38,13 +42,31 @@ const HeroSection = () => {
         
         if (chatRef.current) {
           setTimeout(() => {
-            chatRef.current.scrollTop = chatRef.current.scrollHeight;
+            if (!cancelled && chatRef.current) {
+              chatRef.current.scrollTop = chatRef.current.scrollHeight;
+            }
           }, 100);
         }
       }
+
+      if (cancelled) return;
+      // After the last message appears, wait 3s, then clear the chat and restart the sequence
+      setTimeout(() => {
+        if (cancelled) return;
+        setVisibleMessages([]);
+        // small delay before restarting to avoid immediate overlap
+        setTimeout(() => {
+          if (cancelled) return;
+          showMessages();
+        }, 300);
+      }, 3000);
     };
 
     showMessages();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
