@@ -19,53 +19,97 @@ const HeroSection = () => {
   const startedRef = useRef(false);
 
   useEffect(() => {
-    if (messages.length === 0) return;
-    if (startedRef.current) return;
+    console.debug('[HeroSection] useEffect start');
+    if (messages.length === 0) {
+      console.debug('[HeroSection] no messages');
+      return;
+    }
+    if (startedRef.current) {
+      console.debug('[HeroSection] already startedRef, skipping');
+      return;
+    }
     startedRef.current = true;
     setVisibleMessages([]);
+    console.debug('[HeroSection] initialized, starting sequence');
 
     let cancelled = false;
+    const timers = [];
 
     const showMessages = async () => {
+      console.debug('[HeroSection] showMessages invoked');
       for (let i = 0; i < messages.length; i++) {
-        if (cancelled) return;
-        await new Promise((resolve) => setTimeout(resolve, 1000 + (i * 700)));
-        if (cancelled) return;
+        if (cancelled) {
+          console.debug('[HeroSection] cancelled before message', i);
+          return;
+        }
+        // create a cancellable timeout and await it
+        console.debug('[HeroSection] waiting before message', i, messages[i].text);
+        await new Promise((resolve) => {
+          const id = setTimeout(resolve, 1000 + (i * 700));
+          timers.push(id);
+        });
+        if (cancelled) {
+          console.debug('[HeroSection] cancelled after wait', i);
+          return;
+        }
+
+        console.debug('[HeroSection] pushing message', i, messages[i].text);
         setVisibleMessages(prev => {
           // avoid pushing the same message twice (prevents duplicate messages during HMR/StrictMode)
           const last = prev[prev.length - 1];
           if (last && last.text === messages[i].text && last.isBot === messages[i].isBot) {
+            console.debug('[HeroSection] duplicate detected, skipping', messages[i].text);
             return prev;
           }
           return [...prev, messages[i]];
         });
         
         if (chatRef.current) {
-          setTimeout(() => {
+          const id = setTimeout(() => {
             if (!cancelled && chatRef.current) {
               chatRef.current.scrollTop = chatRef.current.scrollHeight;
             }
           }, 100);
+          timers.push(id);
         }
       }
 
-      if (cancelled) return;
+      if (cancelled) {
+        console.debug('[HeroSection] cancelled at end of sequence');
+        return;
+      }
       // After the last message appears, wait 3s, then clear the chat and restart the sequence
-      setTimeout(() => {
-        if (cancelled) return;
+      console.debug('[HeroSection] sequence complete, scheduling restart in 3s');
+      const restartId = setTimeout(() => {
+        if (cancelled) {
+          console.debug('[HeroSection] cancelled before restart');
+          return;
+        }
+        console.debug('[HeroSection] clearing messages for restart');
         setVisibleMessages([]);
         // small delay before restarting to avoid immediate overlap
-        setTimeout(() => {
-          if (cancelled) return;
+        const smallDelayId = setTimeout(() => {
+          if (cancelled) {
+            console.debug('[HeroSection] cancelled before small delay restart');
+            return;
+          }
+          console.debug('[HeroSection] restarting sequence');
           showMessages();
         }, 300);
+        timers.push(smallDelayId);
       }, 3000);
+      timers.push(restartId);
     };
 
     showMessages();
 
     return () => {
+      console.debug('[HeroSection] cleanup, cancelling timers and resetting startedRef');
       cancelled = true;
+      // clear any pending timeouts to avoid callbacks after unmount
+      timers.forEach((id) => clearTimeout(id));
+      // reset startedRef so StrictMode remounts can run the sequence again
+      startedRef.current = false;
     };
   }, []);
 
@@ -127,7 +171,7 @@ const HeroSection = () => {
                   </div>
                 </div>
                 
-                <div ref={chatRef} className="space-y-3 max-h-64 overflow-y-auto">
+                <div ref={chatRef} className="space-y-3 h-64 overflow-y-auto">
                   {visibleMessages.map((msg, idx) => (
                     <motion.div
                       key={idx}
