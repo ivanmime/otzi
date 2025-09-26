@@ -26,7 +26,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-darkBg">
+    <section id="pricing" className="py-20 bg-darkBg">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Proceso a la izquierda */}
