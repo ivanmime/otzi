@@ -1,5 +1,5 @@
 // API para gestión de estudios
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://91.98.162.164:3001';
 
 class StudiosAPI {
   // Crear nuevo estudio
