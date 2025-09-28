@@ -9,6 +9,7 @@ import FeaturesSection from '../components/FeaturesSection';
 import ProcessSection from '../components/ProcessSection';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
+import AdminButton from '../components/admin/AdminButton';
 
 const Home = () => {
   return (
@@ -73,6 +74,7 @@ const Home = () => {
       <ProcessSection />
       <FinalCTA />
       <Footer />
+      <AdminButton />
     </div>
   );
 };
