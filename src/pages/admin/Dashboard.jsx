@@ -68,16 +68,20 @@ const Dashboard = () => {
   const handleToggleBot = async (studioId) => {
     try {
       const studio = studios.find(s => s.id === studioId);
-      const newStatus = studio.status === 'active' ? 'inactive' : 'active';
+      const currentStatus = studio.status === 'active';
       
-      await StudiosAPI.toggleBot(studioId, newStatus);
+      // Enviar 'start' o 'stop' según el estado actual
+      const action = currentStatus ? 'stop' : 'start';
+      
+      await StudiosAPI.toggleBot(studioId, action);
       
       // Actualizar el estado local
+      const newStatus = currentStatus ? 'inactive' : 'active';
       setStudios(prev => prev.map(s => 
         s.id === studioId ? { ...s, status: newStatus } : s
       ));
       
-      console.log(`Bot ${newStatus === 'active' ? 'activado' : 'desactivado'}:`, studioId);
+      console.log(`Bot ${action === 'start' ? 'activado' : 'desactivado'}:`, studioId);
     } catch (error) {
       console.error('Error cambiando estado del bot:', error);
       alert('Error cambiando el estado del bot. Por favor, inténtalo de nuevo.');
