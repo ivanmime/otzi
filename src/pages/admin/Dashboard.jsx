@@ -53,14 +53,47 @@ const Dashboard = () => {
     navigate('/admin/add-studio');
   };
 
-  const handleToggleBot = (studioId) => {
-    // Lógica para activar/desactivar bot
-    console.log('Toggle bot:', studioId);
+  const handleToggleBot = async (studioId) => {
+    try {
+      const studio = studios.find(s => s.id === studioId);
+      const newStatus = studio.status === 'active' ? 'inactive' : 'active';
+      
+      await StudiosAPI.toggleBot(studioId, newStatus);
+      
+      // Actualizar el estado local
+      setStudios(prev => prev.map(s => 
+        s.id === studioId ? { ...s, status: newStatus } : s
+      ));
+      
+      console.log(`Bot ${newStatus === 'active' ? 'activado' : 'desactivado'}:`, studioId);
+    } catch (error) {
+      console.error('Error cambiando estado del bot:', error);
+      alert('Error cambiando el estado del bot. Por favor, inténtalo de nuevo.');
+    }
   };
 
-  const handleDeleteStudio = (studioId) => {
-    // Lógica para eliminar estudio
-    console.log('Eliminar estudio:', studioId);
+  const handleDeleteStudio = async (studioId) => {
+    if (!confirm('¿Estás seguro de que quieres eliminar este estudio? Esta acción no se puede deshacer.')) {
+      return;
+    }
+
+    try {
+      await StudiosAPI.deleteStudio(studioId);
+      
+      // Actualizar el estado local
+      setStudios(prev => prev.filter(s => s.id !== studioId));
+      
+      console.log('Estudio eliminado:', studioId);
+    } catch (error) {
+      console.error('Error eliminando estudio:', error);
+      alert('Error eliminando el estudio. Por favor, inténtalo de nuevo.');
+    }
+  };
+
+  const handleConfigureStudio = (studioId) => {
+    // Navegar a página de configuración (por implementar)
+    console.log('Configurar estudio:', studioId);
+    alert('Funcionalidad de configuración en desarrollo');
   };
 
   if (loading) {
@@ -225,6 +258,7 @@ const Dashboard = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => handleConfigureStudio(studio.id)}
                   className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-3 rounded-lg"
                 >
                   <FaCog />
