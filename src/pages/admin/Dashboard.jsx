@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { 
   FaPlus, 
   FaRobot, 
@@ -13,6 +14,7 @@ import {
 } from 'react-icons/fa';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [studios, setStudios] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,8 +46,8 @@ const Dashboard = () => {
   }, []);
 
   const handleCreateStudio = () => {
-    // Lógica para crear nuevo estudio
-    console.log('Crear nuevo estudio');
+    // Navegar al formulario de crear estudio
+    navigate('/admin/add-studio');
   };
 
   const handleToggleBot = (studioId) => {
