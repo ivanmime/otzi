@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaSave, FaRobot, FaCalendarAlt, FaClock, FaDollarSign } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import StudiosAPI from '../../api/studios';
 
 const AddStudio = () => {
   const navigate = useNavigate();
@@ -46,22 +47,58 @@ const AddStudio = () => {
     setLoading(true);
 
     try {
-      // Simular creación del estudio
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
       console.log('Creando estudio:', formData);
       
-      // Aquí iría la llamada a la API
-      // const response = await fetch('/api/studios/create', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
+      // Crear el estudio usando la API
+      const studioData = {
+        name: formData.name,
+        slug: formData.name.toLowerCase().replace(/[^a-z0-9]/g, '_'),
+        description: formData.description,
+        phone: formData.phone,
+        whatsapp: formData.phone,
+        email: `info@${formData.name.toLowerCase().replace(/[^a-z0-9]/g, '')}.com`,
+        address: 'Madrid, España',
+        businessHours: {
+          monday: { open: formData.businessHours.start, close: formData.businessHours.end, closed: false },
+          tuesday: { open: formData.businessHours.start, close: formData.businessHours.end, closed: false },
+          wednesday: { open: formData.businessHours.start, close: formData.businessHours.end, closed: false },
+          thursday: { open: formData.businessHours.start, close: formData.businessHours.end, closed: false },
+          friday: { open: formData.businessHours.start, close: formData.businessHours.end, closed: false },
+          saturday: { open: formData.businessHours.start, close: formData.businessHours.end, closed: false },
+          sunday: { open: formData.businessHours.start, close: formData.businessHours.end, closed: false }
+        },
+        pricing: {
+          basePrice: formData.pricing.base,
+          pricePerHour: formData.pricing.perHour,
+          minimumSession: 60,
+          designFee: 30
+        },
+        settings: {
+          maxAdvanceBooking: 30,
+          sessionBuffer: 15,
+          autoConfirm: false,
+          requireDeposit: true,
+          depositAmount: 20
+        },
+        botConfig: {
+          enabled: true,
+          welcomeMessage: `¡Hola! Soy Otzi, el asistente de ${formData.name}. ¿En qué puedo ayudarte hoy? 😊`,
+          businessName: formData.name,
+          artistName: 'Riande',
+          instagram: '@blackmambatattoo',
+          calendarId: formData.calendarId
+        },
+        status: 'active'
+      };
+
+      const response = await StudiosAPI.createStudio(studioData);
+      console.log('Estudio creado:', response);
       
       // Redirigir al dashboard
       navigate('/admin/dashboard');
     } catch (error) {
       console.error('Error creando estudio:', error);
+      alert('Error creando el estudio. Por favor, inténtalo de nuevo.');
     } finally {
       setLoading(false);
     }
