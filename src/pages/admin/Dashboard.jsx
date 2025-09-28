@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import StudiosAPI from '../../api/studios';
 import { 
   FaPlus, 
   FaRobot, 
@@ -19,31 +20,33 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simular carga de estudios
-    setTimeout(() => {
-      setStudios([
-        {
-          id: 1,
-          name: 'Black Mamba Tattoo',
-          phone: '+34644184841',
-          status: 'active',
-          messages: 1247,
-          appointments: 89,
-          revenue: 4450
-        },
-        {
-          id: 2,
-          name: 'Ink Studio',
-          phone: '+34644184842',
-          status: 'inactive',
-          messages: 0,
-          appointments: 0,
-          revenue: 0
-        }
-      ]);
-      setLoading(false);
-    }, 1000);
+    loadStudios();
   }, []);
+
+  const loadStudios = async () => {
+    try {
+      setLoading(true);
+      const response = await StudiosAPI.getStudios();
+      
+      // Mapear los datos de la API al formato del dashboard
+      const mappedStudios = response.data.map(studio => ({
+        id: studio.id,
+        name: studio.name,
+        phone: studio.phone,
+        status: studio.status || 'active',
+        messages: 0, // TODO: Obtener datos reales de mensajes
+        appointments: 0, // TODO: Obtener datos reales de citas
+        revenue: 0 // TODO: Obtener datos reales de ingresos
+      }));
+      
+      setStudios(mappedStudios);
+    } catch (error) {
+      console.error('Error cargando estudios:', error);
+      setStudios([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleCreateStudio = () => {
     // Navegar al formulario de crear estudio
