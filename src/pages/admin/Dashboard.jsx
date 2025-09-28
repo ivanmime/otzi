@@ -26,7 +26,17 @@ const Dashboard = () => {
   const loadStudios = async () => {
     try {
       setLoading(true);
+      console.log('🔄 Cargando estudios...');
+      
       const response = await StudiosAPI.getStudios();
+      console.log('📊 Respuesta de la API:', response);
+      
+      // Verificar que la respuesta tenga la estructura correcta
+      if (!response || !response.data) {
+        console.error('❌ Respuesta de API inválida:', response);
+        setStudios([]);
+        return;
+      }
       
       // Mapear los datos de la API al formato del dashboard
       const mappedStudios = response.data.map(studio => ({
@@ -39,9 +49,11 @@ const Dashboard = () => {
         revenue: 0 // TODO: Obtener datos reales de ingresos
       }));
       
+      console.log('✅ Estudios mapeados:', mappedStudios);
       setStudios(mappedStudios);
     } catch (error) {
-      console.error('Error cargando estudios:', error);
+      console.error('❌ Error cargando estudios:', error);
+      alert('Error cargando estudios: ' + error.message);
       setStudios([]);
     } finally {
       setLoading(false);
