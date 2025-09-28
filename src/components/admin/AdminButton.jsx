@@ -10,7 +10,7 @@ const AdminButton = () => {
   const [error, setError] = useState('');
 
   const handleAdminAccess = () => {
-    if (password === 'otzi2025') {
+    if (password === 'CynthiaIvan97') {
       navigate('/admin/dashboard');
     } else {
       setError('Contraseña incorrecta');
