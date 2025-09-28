@@ -98,7 +98,19 @@ const AddStudio = () => {
       navigate('/admin/dashboard');
     } catch (error) {
       console.error('Error creando estudio:', error);
-      alert('Error creando el estudio. Por favor, inténtalo de nuevo.');
+      
+      // Manejar errores específicos
+      let errorMessage = 'Error creando el estudio. Por favor, inténtalo de nuevo.';
+      
+      if (error.message.includes('UNIQUE constraint failed: studios.phone')) {
+        errorMessage = 'Ya existe un estudio con este número de teléfono. Por favor, usa un número diferente.';
+      } else if (error.message.includes('UNIQUE constraint failed: studios.slug')) {
+        errorMessage = 'Ya existe un estudio con este nombre. Por favor, usa un nombre diferente.';
+      } else if (error.message.includes('Missing required field')) {
+        errorMessage = 'Faltan campos obligatorios. Por favor, completa todos los campos requeridos.';
+      }
+      
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }
