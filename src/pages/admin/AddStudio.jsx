@@ -85,9 +85,9 @@ const AddStudio = () => {
           welcomeMessage: `¡Hola! Soy Otzi, el asistente de ${formData.name}. ¿En qué puedo ayudarte hoy? 😊`,
           businessName: formData.name,
           artistName: 'Riande',
-          instagram: '@blackmambatattoo',
-          calendarId: formData.calendarId
+          instagram: '@blackmambatattoo'
         },
+        calendarId: formData.calendarId,
         status: 'active'
       };
 
